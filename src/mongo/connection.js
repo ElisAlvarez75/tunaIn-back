@@ -5,7 +5,7 @@ const databasePort = process.env.DATABASE_PORT || '27017';
 const databaseName = process.env.DATABASE_NAME || 'app';
 const databaseUser = process.env.DATABASE_USER;
 const databasePassword = process.env.DATABASE_PASSWORD;
-const databaseURL = process.env.DATABASE_URL;
+const databaseURL = process.env.DATABASE_URL || "mongodb+srv://Admin:admin@tuna.tajms.mongodb.net/Tuna?retryWrites=true&w=majority";
 
 
 if(databaseURL){
