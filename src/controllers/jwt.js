@@ -9,9 +9,9 @@ const configSecurity = (app) => {
   app.use(jwtMiddleware({ secret: jwtSecret, algorithms: ['HS256']}).unless({path: ['/token']}));
   app.post('/token', async (req, res) => {
     const { email, password } = req.body;
-    const users = await data.User.find({email});
+    const users = await data.user.find({email});
 
-    if (users.length === 1 && passwordHash.verify(password, users[0].sensitiveHashpass)) {
+    if (users.length === 1 && passwordHash.verify(password, users[0].password)) {
       const user = users[0];
       const token = jwt.sign({ id: user._id }, jwtSecret);
       res.send({ token });
