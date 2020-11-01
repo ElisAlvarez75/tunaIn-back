@@ -15,6 +15,21 @@ const validationEntityIdMiddleware = (req, res, next) => {
   }
 }
 
+
+const validateUserRole = (req, res, next) => {
+  const userRole = req.user.roles;
+  console.log(req.user.roles);
+
+  if (userRole ==  'ROLE_ADMIN' ) {
+    next ();
+
+
+
+  }
+
+  next();
+}
+
 module.exports = {
   validationEntityMiddleware,
   validationEntityIdMiddleware,
