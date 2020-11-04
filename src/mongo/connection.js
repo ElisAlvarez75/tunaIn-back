@@ -8,13 +8,12 @@ const databasePassword = process.env.DATABASE_PASSWORD;
 const databaseURL = process.env.DATABASE_URL || "mongodb+srv://Admin:admin@tuna.tajms.mongodb.net/Tuna?retryWrites=true&w=majority";
 
 
-if(databaseURL){
-	mongoose.connect(databaseURL, {useNewUrlParser: true});
-}else{
-	if(databaseUser && databasePassword) {
-		mongoose.connect(`mongodb://${databaseUser}:${databasePassword}@${databaseHost}:${databasePort}/${databaseName}?authSource=admin`, {useNewUrlParser: true, useUnifiedTopology: true});
-	}else {
-		mongoose.connect(`mongodb://${databaseHost}:${databasePort}/${databaseName}?authSource=admin`, {useNewUrlParser: true, useUnifiedTopology: true});
+if (databaseURL) {
+	mongoose.connect(databaseURL, { useNewUrlParser: true, useUnifiedTopology: true });
+} else {
+	if (databaseUser && databasePassword) {
+		mongoose.connect(`mongodb://${databaseUser}:${databasePassword}@${databaseHost}:${databasePort}/${databaseName}?authSource=admin`, { useNewUrlParser: true, useUnifiedTopology: true });
+	} else {
+		mongoose.connect(`mongodb://${databaseHost}:${databasePort}/${databaseName}?authSource=admin`, { useNewUrlParser: true, useUnifiedTopology: true });
 	}
 }
-
