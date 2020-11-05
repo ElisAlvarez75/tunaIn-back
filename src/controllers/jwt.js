@@ -11,8 +11,9 @@ const configSecurity = (app) => {
     const { email, password } = req.body;
     const users = await user.find({ email });
 
-    if (users.length === 1 && passwordHash.verify(password, users[0].sensitiveHashpass)) {
+    if (users.length === 1 && passwordHash.verify(password, users[0].password)) {
       const user = users[0];
+      console.log('inside', user)
       const token = jwt.sign({ id: user._id }, jwtSecret);
       res.status(200).send({ token });
     } else {
@@ -21,7 +22,8 @@ const configSecurity = (app) => {
   });
 
   app.post('/register', async (req, res) => {
-    // const { nombre, email, password, fechaNacimiento, username } = req.body;
+    const { password } = req.body;
+    req.body.password = passwordHash.generate(password);
     const newUser = new user(req.body);
     newUser.save().then(result => {
       const token = jwt.sign({ id: result._id }, jwtSecret);
