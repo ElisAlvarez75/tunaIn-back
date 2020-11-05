@@ -21,7 +21,7 @@ const configSecurity = (app) => {
   });
 
   app.post('/register', async (req, res) => {
-    const { nombre, email, password, fechaNacimiento, username } = req.body;
+    // const { nombre, email, password, fechaNacimiento, username } = req.body;
     const newUser = new user(req.body);
     newUser.save().then(result => {
       const token = jwt.sign({ id: result._id }, jwtSecret);
