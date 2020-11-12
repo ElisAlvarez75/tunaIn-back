@@ -9,9 +9,10 @@ const schema = new mongoose.Schema({
   description: {
     type: String,
   },
-  categories:{
-
-  }, 
+  categories: {
+    type: String,
+    required: true,
+  },
   location: {
     type: String,
     required: true,
@@ -29,10 +30,9 @@ const schema = new mongoose.Schema({
     require: true,
   },
   id_author: {
-    type: Schema.ObjectId,
-    ref: "User", 
+    type: String,
+    ref: User,
     required: true,
-    unique: true,
   },
   created: {
     type: Date,
