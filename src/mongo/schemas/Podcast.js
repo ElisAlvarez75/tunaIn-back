@@ -31,7 +31,7 @@ const schema = new mongoose.Schema({
   },
   id_author: {
     type: String,
-    ref: User,
+    ref: 'User',
     required: true,
   },
   created: {
