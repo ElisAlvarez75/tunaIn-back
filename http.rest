@@ -1,0 +1,17 @@
+@url = http://localhost:3300/data/user/
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYjU3OTllNTNkZjliMGRlZWI4YTk2NiIsImlhdCI6MTYwNTcyODY3MH0.8RyAkTiG_U8A4hV514AH-OLwqR9kZS0RkgsP1b_teKY
+
+GET {{url}}
+Authorization: {{token}}
+
+###
+GET {{url}}5fb2cb781cb42b40b4e375c8
+Authorization: {{token}}
+
+###
+PATCH {{url}}
+Content-Type: application/json
+
+{
+    "password": "1234"
+}
