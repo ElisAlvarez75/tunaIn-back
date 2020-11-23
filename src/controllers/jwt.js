@@ -33,6 +33,18 @@ const configSecurity = (app) => {
       res.status(500).send({ error: e.message });
     });
   });
+
+  app.patch('/edituserprofile/:id', async (req, res) => {
+    const { password } = req.body;
+    const newPassword = passwordHash.generate(password);
+    user.findByIdAndUpdate(req.params.id, { password: newPassword })
+      .then(result => {
+        const token = jwt.sign({ id: result._id }, jwtSecret);
+        res.send({ token });
+      }).catch(e => {
+        res.status(500).send({ error: e.message });
+      });
+  });
 }
 
 module.exports = {
