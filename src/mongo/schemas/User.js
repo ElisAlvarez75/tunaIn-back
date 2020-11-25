@@ -22,6 +22,10 @@ const schema = new mongoose.Schema({
     type: Date,
   },
 
+  isValidated: {
+    type: Boolean
+  }
+
 });
 
 const User = mongoose.model('User', schema);
