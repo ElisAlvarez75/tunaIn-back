@@ -15,11 +15,11 @@ app.use(cors({
 }))
 
 app.use(bodyParser.json());
-
+app.use(morgan('dev'));
 configSecurity(app);
 
 app.use('/data', buildDataRouter());
-
+app.use('/track', trackRouter);
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)
