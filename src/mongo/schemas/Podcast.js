@@ -19,15 +19,15 @@ const schema = new mongoose.Schema({
   },
   img: {
     type: Buffer,
-    required: true,
+    //required: true,
   },
   audio: {
     type: Buffer,
-    required: true,
+    //required: true,
   },
   duration: {
     type: Number,
-    require: true,
+    //require: true,
   },
   id_author: {
     type: String,
