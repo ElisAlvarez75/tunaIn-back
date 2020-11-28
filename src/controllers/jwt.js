@@ -1,4 +1,4 @@
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 const jwtMiddleware = require('express-jwt');
 const passwordHash = require('password-hash');
@@ -6,7 +6,7 @@ const { user } = require('../mongo');
 const { jwtSecret } = require("../config");
 
 const configSecurity = (app) => {
-  app.use(jwtMiddleware({ secret: jwtSecret, algorithms: ['HS256'] }).unless({ path: ['/login', '/register'] }));
+  app.use(jwtMiddleware({ secret: jwtSecret, algorithms: ['HS256'] }).unless({ path: ['/login', '/register', '/comments'] }));
   app.post('/login', async (req, res) => {
     const { email, password } = req.body;
     const users = await user.find({ email });
