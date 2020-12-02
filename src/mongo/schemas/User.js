@@ -21,13 +21,6 @@ const schema = new mongoose.Schema({
   fechaNacimiento: {
     type: Date,
   },
-
-  comments: [{
-
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Comments'
-  }]
-
 });
 
 const User = mongoose.model('User', schema);

@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require('express');
 const models = require('../mongo');
 
 
@@ -6,27 +6,39 @@ const podcastRouter = () => {
 
     let router = express.Router();
 
-    router.use('/comments', (req, res) => {
+    //Get All
+    router.get('/', (req, res) => {
+        const comment = models[req.params.comment];
 
-        const user = req.user.id;
-        const comment = new models.comments({
-            comment_id: req.comment.id
-        });
-
-        return comment.save().then(result => {
-            models.user.findByIdAndUpdate(user, {$push: {comments: result._id}})
-                .then((result) => {
-                    res.status(200).send(user)
-                })
+        return comment.then((result) => {
+            if (result) {
+                res.status(200).send(result);
+            } else {
+                res.status(404).send();
+            }
         }).catch((err) => {
             res.status(500).send({error: err})
-        });
+        })
+    });
+
+    // Get ALL by ID
+    router.get('/', (req, res) => {
+        const comment = models[req.params.comment];
+        return comment.find({ id: req.params.id}).then((result) => {
+            if (result) {
+                res.status(200).send(result);
+            } else {
+                res.status(404).send();
+            }
+        }).catch((err) => {
+            res.status(500).send({error: err})
+        })
     });
 
     //Get one by ID
-    router.get('/:comments/:id', (req, res) => {
-        const comments = models[req.params.comments];
-        return comments.findById(req.params.id).then((result) => {
+    router.get('/:id', (req, res) => {
+        const comment = models[req.params.comment];
+        return comment.findById(req.params.id).then((result) => {
             if (result) {
                 res.status(200).send(result);
             } else {
@@ -38,33 +50,37 @@ const podcastRouter = () => {
     });
 
     // CREATE
-    router.post('/:comments', (req, res) => {
-        const comments = models[req.params.comments];
-        const newcomments = new comments(req.body);
-        return newcomments.save().then((result) => {
+    router.post('/:id', (req, res) => {
+        let body = req.body;
+        let comment = new models.comment({
+            comment: body.comment,
+            user: req.user.id,
+            podcast: body.podcast.id
+        })
+        return comment.save().then((result) => {
             res.send(result);
         }).catch((err) => {
             res.status(500).send({error: err})
         });
     });
     // UPDATE BY ID
-    router.put('/:comments/:id', (req, res) => {
-        const comments = models[req.params.comments];
-        return comments.findByIdAndUpdate(req.params.id, req.body, {'new': true})
+    router.put('/:id', (req, res) => {
+        const comment = models[req.params.comment];
+        return comment.findByIdAndUpdate(req.params.id, req.body.comment, {'new': true})
             .then((result) => {
                 if (result) {
                     res.status(200).send(result);
                 } else {
-                    res.status(404).send();
+                    res.status(404).send("El ID no existe");
                 }
             }).catch((err) => {
                 res.status(500).send({error: err})
             });
     });
     //DELETE
-    router.delete('/:comments/:id', (req, res) => {
-        const comments = models[req.params.comments];
-        return comments.findByIdAndDelete(req.params.id).then(() => {
+    router.delete('/:id', (req, res) => {
+        const comment = models[req.params.comment];
+        return comment.findByIdAndDelete(req.params.id).then(() => {
             res.status(204).send();
         }).catch((err) => {
             res.status(500).send({error: err})

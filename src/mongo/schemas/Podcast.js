@@ -45,11 +45,6 @@ const schema = new mongoose.Schema({
     type: String,
     get: (value) => `${value} favoritos`,
   },
-  comments: [{
-
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Comments'
-  }]
 });
 
 const Podcast = mongoose.model('Podcast', schema);

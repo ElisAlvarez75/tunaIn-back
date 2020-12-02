@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 configSecurity(app);
 
 app.use('/data', buildDataRouter());
-app.use('/comments', podcastRouter());
+app.use('/comment', podcastRouter());
 
 
 app.listen(port, () => {
