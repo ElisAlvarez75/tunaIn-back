@@ -70,7 +70,7 @@ const podcastRouter = () => {
     router.delete('/:id', (req, res) => {
         const comment = models.comment;
         return comment.findByIdAndDelete(req.params.id).then(() => {
-            res.status(204).send();
+            res.status(200).send();
         }).catch((err) => {
             res.status(500).send({error: err})
         });
