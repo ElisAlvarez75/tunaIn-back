@@ -8,7 +8,7 @@ const models = require('../../mongo');
 
 
 const buildRouter = () => {
-  var router = express.Router()
+  let router = express.Router()
 
   router.use('/:entity', validationEntityMiddleware);
   router.use('/:entity/:id', validationEntityIdMiddleware);

@@ -21,11 +21,6 @@ const schema = new mongoose.Schema({
   fechaNacimiento: {
     type: Date,
   },
-
-  isValidated: {
-    type: Boolean
-  }
-
 });
 
 const User = mongoose.model('User', schema);
