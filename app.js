@@ -2,9 +2,11 @@ const { configSecurity } = require("./src/controllers/jwt");
 require('dotenv').config();
 
 const express = require('express')
+const morgan = require('morgan');
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const buildDataRouter = require('./src/controllers/data').buildRouter;
+const trackRouter = require('./src/controllers/trackController').router;
 
 const app = express();
 const port = 3300;
