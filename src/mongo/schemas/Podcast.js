@@ -21,12 +21,9 @@ const schema = new mongoose.Schema({
     required: true,
   },
   audio: {
-    type: Buffer,
+    type:String,
+    ref: 'fs.files',
     required: true,
-  },
-  duration: {
-    type: Number,
-    require: true,
   },
   id_author: {
     type: String,
