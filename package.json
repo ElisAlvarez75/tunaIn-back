@@ -6,6 +6,7 @@
   "devDependencies": {
     "easy-livereload": "^1.4.3",
     "jest": "^26.4.2",
+    "jsonwebtoken": "^8.5.1",
     "node-dev": "^5.2.0"
   },
   "scripts": {
