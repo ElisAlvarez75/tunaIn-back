@@ -16,7 +16,7 @@ router.get('/:trackID', (req, res) => {
     res.set("accept-ranges", "bytes");
 
     const GridFS = Grid(mongoose.connection.db, mongoose.mongo);
-
+    const downloadStream = GridFS.createReadStream({ _id: trackID });
     downloadStream.on('data', chunk => {
         res.write(chunk);
       });
