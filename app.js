@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const podcastRouter = require("./src/controllers/podcastController").podcastRouter;
 const buildDataRouter = require('./src/controllers/data').buildRouter;
+const searchRouter = require('./src/controllers/searchController').router;
 const trackRouter = require('./src/controllers/trackController').router;
 
 const app = express();
@@ -24,7 +25,7 @@ app.use('/data', buildDataRouter());
 
 app.use('/track', trackRouter);
 app.use('/comment', podcastRouter());
-
+app.use('/user', searchRouter);
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)
