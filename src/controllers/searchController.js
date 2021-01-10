@@ -18,9 +18,7 @@ router.get('/', (req, res) => {
 router.get('/:nombre', (req, res) => {
     let nombre = req.params.nombre;
     models.user.find({"nombre": {"$regex": nombre, "$options": "i"}},{
-        'id':1,
-        'nombre':1,
-        
+      
 
     }, function(err, users) {
         
@@ -29,7 +27,7 @@ router.get('/:nombre', (req, res) => {
         
 
         res.send(users);
-    });
+    }).limit(5);
 });
 module.exports = {
     router,
