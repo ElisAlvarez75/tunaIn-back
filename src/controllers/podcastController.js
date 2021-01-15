@@ -8,9 +8,9 @@ const podcastRouter = () => {
 
     //Get All
     router.get('/', (req, res) => {
-        const comment = models[req.params.comment];
+        const comment = models.comment;
 
-        return comment.then((result) => {
+        return comment.find().then((result) => {
             if (result) {
                 res.status(200).send(result);
             } else {
@@ -22,9 +22,11 @@ const podcastRouter = () => {
     });
 
     // Get ALL by ID
-    router.get('/', (req, res) => {
-        const comment = models[req.params.comment];
-        return comment.find({ id: req.params.id}).then((result) => {
+    router.get('/:podcastId', (req, res) => {
+        let from = req.query.from || 0;
+        from = Number(from);
+        const comment = models.comment;
+        return comment.find({podcast: req.params.podcastId}).skip(from).limit(5).then((result) => {
             if (result) {
                 res.status(200).send(result);
             } else {
@@ -65,8 +67,8 @@ const podcastRouter = () => {
     });
     // UPDATE BY ID
     router.put('/:id', (req, res) => {
-        const comment = models[req.params.comment];
-        return comment.findByIdAndUpdate(req.params.id, req.body.comment, {'new': true})
+        const comment = models.comment;
+        return comment.findByIdAndUpdate(req.params.id, {$set: {comment: req.body.comment}}, {'new': true})
             .then((result) => {
                 if (result) {
                     res.status(200).send(result);
@@ -79,9 +81,9 @@ const podcastRouter = () => {
     });
     //DELETE
     router.delete('/:id', (req, res) => {
-        const comment = models[req.params.comment];
+        const comment = models.comment;
         return comment.findByIdAndDelete(req.params.id).then(() => {
-            res.status(204).send();
+            res.status(200).send();
         }).catch((err) => {
             res.status(500).send({error: err})
         });
