@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
         users.forEach(function(user){
             userMap[user.id] = user;
         })
-        res.send("por defecto");
+        res.send(users);
     });
 });
 router.get('/:nombre', (req, res) => {
