@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
 
 const schema = new mongoose.Schema({
   title: {
@@ -49,5 +48,6 @@ const schema = new mongoose.Schema({
 });
 
 const Podcast = mongoose.model('Podcast', schema);
+const User = mongoose.model('User');
 
 module.exports = Podcast;

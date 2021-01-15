@@ -21,7 +21,6 @@ const schema = new mongoose.Schema({
   fechaNacimiento: {
     type: Date,
   },
-
 });
 
 const User = mongoose.model('User', schema);
