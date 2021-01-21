@@ -17,7 +17,7 @@ const schema = new mongoose.Schema({
         required: true,
       },
 
-    podcast: [{
+    list: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Podcast',
         required: true,

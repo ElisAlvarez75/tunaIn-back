@@ -28,7 +28,7 @@ app.use('/data', buildDataRouter());
 app.use('/track', trackRouter);
 app.use('/comment', podcastRouter());
 app.use('/user', searchRouter);
-app.use('/playlist', playlistRouter);
+app.use('/playlist', playlistRouter());
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)

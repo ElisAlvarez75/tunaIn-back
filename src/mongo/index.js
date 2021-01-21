@@ -13,6 +13,6 @@ module.exports = {
   podcast: Podcast,
   comment: Comment,
   favoritos: Favoritos,
-  playlist: Playlist,
+  
 }
 
