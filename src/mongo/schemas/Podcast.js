@@ -18,7 +18,7 @@ const schema = new mongoose.Schema({
   },
   img: {
     type: Buffer,
-    required: true,
+    //required: true,
   },
   audio: {
     type:String,

@@ -1,5 +1,13 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
+const options = {
+    page: 1,
+    limit: 10,
+    collation: {
+        locale: 'en'
+    }
+};
 
 const schema = new mongoose.Schema({
     comment: {
@@ -18,7 +26,12 @@ const schema = new mongoose.Schema({
     }
 
 });
+schema.plugin(mongoosePaginate);
 
 const Comment = mongoose.model('Comment', schema);
+
+Comment.paginate({}, options).then({
+
+});
 
 module.exports = Comment;
