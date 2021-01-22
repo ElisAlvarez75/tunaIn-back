@@ -37,14 +37,27 @@ const podcastRouter = () => {
         })
     });
 
+    //Get one by ID
+    router.get('/:id', (req, res) => {
+        const comment = models[req.params.comment];
+        return comment.findById(req.params.id).then((result) => {
+            if (result) {
+                res.status(200).send(result);
+            } else {
+                res.status(404).send();
+            }
+        }).catch((err) => {
+            res.status(500).send({error: err})
+        })
+    });
 
     // CREATE
-    router.post('/', (req, res) => {
+    router.post('/:id', (req, res) => {
         let body = req.body;
         let comment = new models.comment({
             comment: body.comment,
-            user: body.user.id,
-            podcast: body.podcast
+            user: req.user.id,
+            podcast: body.podcast.id
         })
         return comment.save().then((result) => {
             res.send(result);

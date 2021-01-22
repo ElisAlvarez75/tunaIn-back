@@ -13,7 +13,7 @@ const buildRouter = () => {
   router.use('/:entity', validationEntityMiddleware);
   router.use('/:entity/:id', validationEntityIdMiddleware);
   router.use('/', redactMiddleware);
-
+  
   //Get one by ID
   router.get('/:entity/:id', (req, res) => {
     const Entity = models[req.params.entity];
@@ -63,13 +63,15 @@ const buildRouter = () => {
   });
   //DELETE
   router.delete('/:entity/:id', (req, res) => {
+    
     const Entity = models[req.params.entity];
     return Entity.findByIdAndDelete(req.params.id).then(() => {
       res.status(204).send();
     }).catch((err) => {
       res.status(500).send({error: err})
     });
-  });
+  }); 
+  
   return router;
 };
 
