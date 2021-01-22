@@ -13,7 +13,7 @@ const playlistRouter = require('./src/controllers/playlistController').playlistR
 
 
 const app = express();
-const port = 3300;
+const port = process.env.PORT;
 app.use(cors({
   origin: '*',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
