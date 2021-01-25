@@ -16,7 +16,7 @@ const configSecurity = (app) => {
       const user = users[0];
       console.log('inside', user)
       const token = jwt.sign({ id: user._id }, jwtSecret);
-      res.status(200).send({ token });
+      res.status(200).send({ token, user });
     } else {
       res.status(401).send({ message: 'Username or password incorrect' });
     }
@@ -40,7 +40,7 @@ const configSecurity = (app) => {
     user.findByIdAndUpdate(req.params.id, { password: newPassword })
       .then(result => {
         const token = jwt.sign({ id: result._id }, jwtSecret);
-        res.send({ token });
+        res.send({ token, user });
       }).catch(e => {
         res.status(500).send({ error: e.message });
       });
