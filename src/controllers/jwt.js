@@ -16,7 +16,7 @@ const configSecurity = (app) => {
       const user = users[0];
       console.log('inside', user)
       const token = jwt.sign({ id: user._id }, jwtSecret);
-      res.status(200).send({ token });
+      res.status(200).send({ token, user });
     } else {
       res.status(401).send({ message: 'Username or password incorrect' });
     }
