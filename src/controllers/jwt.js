@@ -28,7 +28,7 @@ const configSecurity = (app) => {
     const newUser = new user(req.body);
     newUser.save().then(result => {
       const token = jwt.sign({ id: result._id }, jwtSecret);
-      res.send({ token });
+      res.send({ token, user });
     }).catch(e => {
       res.status(500).send({ error: e.message });
     });
@@ -40,7 +40,7 @@ const configSecurity = (app) => {
     user.findByIdAndUpdate(req.params.id, { password: newPassword })
       .then(result => {
         const token = jwt.sign({ id: result._id }, jwtSecret);
-        res.send({ token, user });
+        res.send({ token });
       }).catch(e => {
         res.status(500).send({ error: e.message });
       });
