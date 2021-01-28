@@ -17,6 +17,7 @@ const podcastRouter = () => {
       res.status(500).send({error: err})
     })
   });
+  
   /* Get ALL by ID */
   router.get('/:podcastId', (req, res) => {
     let from = req.query.from || 0;
@@ -33,6 +34,7 @@ const podcastRouter = () => {
         res.status(500).send({error: err})
       })
     });
+
     /* Get one by ID */
     router.get('/:id', (req, res) => {
         const comment = models[req.params.comment];
@@ -46,6 +48,7 @@ const podcastRouter = () => {
             res.status(500).send({error: err})
         })
     });
+
     /* CREATE */
     router.post('/:id', (req, res) => {
         let body = req.body;
@@ -60,6 +63,7 @@ const podcastRouter = () => {
             res.status(500).send({error: err})
         });
     });
+
     /* UPDATE BY ID */
     router.put('/:id', (req, res) => {
       models.comment.findByIdAndUpdate(req.params.id, {$set: {comment: req.body.comment}}, {'new': true})
@@ -73,6 +77,7 @@ const podcastRouter = () => {
            res.status(500).send({error: err})
         });
     });
+
     /* DELETE */
     router.delete('/:id', (req, res) => {
       models.comment.findByIdAndDelete(req.params.id)

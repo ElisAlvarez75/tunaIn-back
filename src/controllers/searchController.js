@@ -1,7 +1,7 @@
 const express = require('express');
 const models = require('../mongo');
 
-const searchRouter = express.RouterRouter();
+const searchRouter = express.Router();
   searchRouter.get('/', (req, res) => {
     models.user.find({}, function(err, users) {
       let userMap = {};
