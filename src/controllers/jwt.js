@@ -10,7 +10,7 @@ const configSecurity = (app) => {
   app.post('/login', async (req, res) => {
     const { email, password } = req.body;
     const users = await user.find({ email });
-    //const users = await data.user.find({email});
+    
 
     if (users.length === 1 && passwordHash.verify(password, users[0].password)) {
       const user = users[0];

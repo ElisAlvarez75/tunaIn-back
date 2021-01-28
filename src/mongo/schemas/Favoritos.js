@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
+  
   id_author: {
     type: String,
     ref: 'User',
@@ -11,7 +12,7 @@ const schema = new mongoose.Schema({
     ref: 'Podcast',
     required: true,
   }
-
+  
 });
 
 const Favoritos = mongoose.model('Favoritos', schema);

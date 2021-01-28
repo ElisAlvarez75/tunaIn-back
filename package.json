@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "devDependencies": {
-
-  },
+  "devDependencies": {},
   "scripts": {
     "start": "node app.js",
     "start-dev": "node-dev app.js",

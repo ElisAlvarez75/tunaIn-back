@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
+  
   id_followingUser: {
     type: String,
     ref: 'User',

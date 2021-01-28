@@ -32,17 +32,17 @@ router.get('/:trackID', (req, res) => {
     });
 
     router.post('/', (req, res) => {
-        // Definiendo storage en memoria
+        /* Definiendo storage en memoria */
         const storage = multer.memoryStorage();
     
-        //Configurando multer
+        /* Configurando multer */
         const upload = multer({
         storage,
         limits: {
-          fields: 5, //Parametros extra que le pasaremos (el name)
-          fileSize: 60000000, //Tamano maximo del file
-          files: 1, //numero de archivos a subir
-          parts: 6 // Dos tipos de campos (el track y el name)
+          fields: 5, /* Parametros extra que le pasaremos (el name) */
+          fileSize: 60000000, /* Tamano maximo del file */
+          files: 1, /* numero de archivos a subir */
+          parts: 6 /* Dos tipos de campos (el track y el name) */
         }
     });
 
@@ -102,13 +102,8 @@ router.get('/:trackID', (req, res) => {
       });
   
     };
-  
-  
-    upload.single('track')(req, res, callback);
-  
-  
+     upload.single('track')(req, res, callback);
   });
-  
   
   module.exports = {
     router,

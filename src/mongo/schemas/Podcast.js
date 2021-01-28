@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
+  
   title: {
     type: String,
     required: true,
@@ -45,6 +46,6 @@ const schema = new mongoose.Schema({
 });
 
 const Podcast = mongoose.model('Podcast', schema);
-const User = mongoose.model('User');
+const User = mongoose.model('User'); /* revisar */
 
 module.exports = Podcast;

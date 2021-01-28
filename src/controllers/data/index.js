@@ -14,7 +14,7 @@ const buildRouter = () => {
   router.use('/:entity/:id', validationEntityIdMiddleware);
   router.use('/', redactMiddleware);
   
-  //Get one by ID
+  /* Get one by ID */
   router.get('/:entity/:id', (req, res) => {
     const Entity = models[req.params.entity];
     return Entity.findById(req.params.id).then((result) => {
@@ -27,7 +27,7 @@ const buildRouter = () => {
       res.status(500).send({error: err})
     })
   });
-  // Search
+  /* Search */
   router.get('/:entity', (req, res) => {
     const Entity = models[req.params.entity];
     return Entity.find(req.query)
@@ -37,7 +37,7 @@ const buildRouter = () => {
         res.status(500).send({error: err})
       });
   });
-  // CREATE
+  /* CREATE */
   router.post('/:entity', (req, res) => {
     const Entity = models[req.params.entity];
     const newEntity = new Entity(req.body);
@@ -47,7 +47,7 @@ const buildRouter = () => {
       res.status(500).send({error: err})
     });
   });
-  // UPDATE BY ID
+  /* UPDATE BY ID */
   router.put('/:entity/:id', (req, res) => {
     const Entity = models[req.params.entity];
     return Entity.findByIdAndUpdate(req.params.id, req.body, {'new': true})
@@ -61,7 +61,7 @@ const buildRouter = () => {
         res.status(500).send({error: err})
       });
   });
-  //DELETE
+  /* DELETE */
   router.delete('/:entity/:id', (req, res) => {
     
     const Entity = models[req.params.entity];

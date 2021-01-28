@@ -1,24 +1,25 @@
 const mung = require('express-mung');
 
 const removeSensitiveKeys = (object) => {
-  const newObject = {};
-  const oldKeys = Object.keys(object);
-  const newKeys = oldKeys.filter(key => !key.startsWith('sensitive'));
-  if (newKeys.length === oldKeys.length) {
-    return object;
-  } else {
-    newKeys.forEach(key => {
-      newObject[key] = object[key];
-    })
-    return newObject;
-  }
+   const newObject = {};
+   const oldKeys = Object.keys(object);
+   const newKeys = oldKeys.filter(key => !key.startsWith('sensitive'));
+  
+    if (newKeys.length === oldKeys.length) {
+      return object;
+    } else {
+       newKeys.forEach(key => {
+       newObject[key] = object[key];
+       })
+       return newObject;
+    }
 }
 
 const recursiveApply = (object, func) => {
   if (object === undefined || object === null) {
     return object;
   }
-  if (Array.isArray(object)) {
+  if (Array.isArray(object)) { 
     return object.map(x => recursiveApply(x, func));
   }
   if (typeof object === 'object' && object !== null) {

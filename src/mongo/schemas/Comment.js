@@ -2,11 +2,12 @@ const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
 const options = {
-    page: 1,
-    limit: 10,
-    collation: {
-        locale: 'en'
-    }
+   
+   page: 1,
+   limit: 10,
+   collation: {
+     locale: 'en'
+     }
 };
 
 const schema = new mongoose.Schema({
