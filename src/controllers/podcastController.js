@@ -57,7 +57,7 @@ const podcastRouter = () => {
         let comment = new models.comment({
             comment: body.comment,
             user: req.user.id,
-            podcast: body.podcast.id
+            podcast: body.podcast
         })
         return comment.save().then((result) => {
             res.send(result);
