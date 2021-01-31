@@ -59,6 +59,7 @@ const podcastRouter = () => {
             user: req.user.id,
             podcast: body.podcast,
             date: body.date
+
         })
         console.log(comment);
         return comment.save().then((result) => {
