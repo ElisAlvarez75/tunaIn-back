@@ -26,7 +26,7 @@ const podcastRouter = () => {
         let from = req.query.from || 0;
         from = Number(from);
         const comment = models.comment;
-        return comment.find({podcast: req.params.podcastId}).skip(from).limit(5).then((result) => {
+        return comment.find({podcast: req.params.podcastId}).skip(from).limit(10).then((result) => {
             if (result) {
                 res.status(200).send(result);
             } else {
