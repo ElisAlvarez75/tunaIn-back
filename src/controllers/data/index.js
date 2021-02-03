@@ -30,12 +30,26 @@ const buildRouter = () => {
   // Search
   router.get('/:entity', (req, res) => {
     const Entity = models[req.params.entity];
-    return Entity.find(req.query)
+    
+    if (req.params.entity === 'favoritos') {
+      return Entity.find(req.query)
+      .populate('id_podcast')
       .then((results) => {
         res.send(results);
       }).catch((err) => {
         res.status(500).send({error: err})
       });
+    } 
+
+    else {
+      return Entity.find(req.query)
+      .then((results) => {
+        res.send(results);
+      }).catch((err) => {
+        res.status(500).send({error: err})
+      });
+    }
+
   });
   // CREATE
   router.post('/:entity', (req, res) => {

@@ -7,10 +7,10 @@ const schema = new mongoose.Schema({
     required: true,
   },
   id_podcast: {
-    type: String,
+    //type: String,
+    type: mongoose.Schema.ObjectId,
     ref: 'Podcast',
-    required: true,
-  }
+  },
 
 });
 
