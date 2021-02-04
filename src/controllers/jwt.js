@@ -34,7 +34,7 @@ app.use(jwtMiddleware({ secret: jwtSecret, algorithms: ['HS256'] }).unless({ pat
     const newUser = new user(req.body);
     newUser.save().then(result => {
       const token = jwt.sign({ id: result._id }, jwtSecret);
-      res.send({ token });
+      res.send({ token, user:result });
     }).catch(e => {
       res.status(500).send({ error: e.message });
     });
