@@ -6,7 +6,13 @@ const { user } = require('../mongo');
 const { jwtSecret } = require("../config");
 
 const configSecurity = (app) => {
-  app.use(jwtMiddleware({ secret: jwtSecret, algorithms: ['HS256'] }).unless({ path: ['/login', '/register'] }));
+  const unprotected = [
+    /\/track*/,
+    /favicon.ico/,
+    /login/,
+    /register/
+  ];
+app.use(jwtMiddleware({ secret: jwtSecret, algorithms: ['HS256'] }).unless({ path: unprotected }));
   app.post('/login', async (req, res) => {
     const { email, password } = req.body;
     const users = await user.find({ email });
@@ -16,7 +22,7 @@ const configSecurity = (app) => {
       const user = users[0];
       console.log('inside', user)
       const token = jwt.sign({ id: user._id }, jwtSecret);
-      res.status(200).send({ token });
+      res.status(200).send({ token, user });
     } else {
       res.status(401).send({ message: 'Username or password incorrect' });
     }
