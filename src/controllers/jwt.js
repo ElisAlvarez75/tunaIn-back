@@ -6,7 +6,13 @@ const { user } = require('../mongo');
 const { jwtSecret } = require("../config");
 
 const configSecurity = (app) => {
-  app.use(jwtMiddleware({ secret: jwtSecret, algorithms: ['HS256'] }).unless({ path: ['/login', '/register'] }));
+  const unprotected = [
+    /\/track*/,
+    /favicon.ico/,
+    /login/,
+    /register/
+  ];
+app.use(jwtMiddleware({ secret: jwtSecret, algorithms: ['HS256'] }).unless({ path: unprotected }));
   app.post('/login', async (req, res) => {
     const { email, password } = req.body;
     const users = await user.find({ email });

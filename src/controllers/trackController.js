@@ -61,7 +61,7 @@ router.post('/', (req, res) => {
     let trackDescription = req.body.description;
     let trackcategories = req.body.categories;
     let trackLocation = req.body.location;
-    let trackUserId = req.user.id;
+    let trackUserId = req.body.userId;
     console.log(req);
     const readableTrackStream = new Readable();
     readableTrackStream.push(req.file.buffer);
