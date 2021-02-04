@@ -14,7 +14,19 @@ const schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Podcast',
         required: [true, 'El Podcast es necesario']
-    }
+    },
+
+    date: {
+        type: String,
+        ref: 'date',
+        required: [true, 'La fecha es necesaria']
+    },
+    name: {
+        type: String,
+        required: [true, 'El Nombre es necesario']
+
+    },
+
 
 });
 

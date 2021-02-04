@@ -39,9 +39,7 @@ const buildRouter = () => {
       }).catch((err) => {
         res.status(500).send({error: err})
       });
-    } 
-
-    else {
+    } else {
       return Entity.find(req.query)
       .then((results) => {
         res.send(results);
